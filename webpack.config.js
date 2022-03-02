@@ -17,9 +17,6 @@ module.exports = {
         'js/app.js': [
             path.resolve(__dirname, './build/js/app.js'),
         ],
-        /*'css/app': [
-            path.resolve(__dirname, './build/sass/app.sass'),
-        ]*/
     },
     output: {
         filename: '[name]',
@@ -53,57 +50,13 @@ module.exports = {
         new MergeIntoSingleFilePlugin({
             files: {
                 "js/plugins.js": [
-                    path.resolve(__dirname, 'build/js/base/svg4everybody.min.js'),
-                    path.resolve(__dirname, 'build/js/base/jquery.min.js'),
-                    path.resolve(__dirname, 'build/js/base/popper.min.js'),
-                    path.resolve(__dirname, 'build/js/base/bootstrap.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/slick.js'),
-                    path.resolve(__dirname, 'build/js/plugins/fancybox.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/mask.js'),
-                    path.resolve(__dirname, 'build/js/plugins/select2.full.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/icheck.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/jquery.mCustomScrollbar.concat.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/jquery.mousewheel.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/aoc.js'),
-                    path.resolve(__dirname, 'build/js/plugins/nouislider.min.js'),
                     path.resolve(__dirname, 'build/js/plugins/winib.js'),
-                    path.resolve(__dirname, 'build/js/plugins/moment.min.js'),
-                    path.resolve(__dirname, 'build/js/plugins/daterangepicker.min.js'),
-                    path.resolve(__dirname, 'assets/vendors/sweetalert2/dist/sweetalert2.all.min.js'),
-                    path.resolve(__dirname, 'assets/vendors/jquery-cookie/jquery.cookie.js'),
-                    path.resolve(__dirname, 'assets/vendors/jquery.countdown/dist/jquery.countdown.min.js'),
-                    path.resolve(__dirname, 'build/js/main.js'),
                 ],
                 "css/plugins.css": [
                     path.resolve(__dirname, 'build/css/ib.css'),
                     path.resolve(__dirname, 'build/css/winib.css'),
                 ]
             }
-        }),
-        new CopyWebpackPlugin({
-            patterns: [{
-                    from: path.resolve(__dirname, 'build/js/script3.js'),
-                    to: path.resolve(__dirname, 'assets/js/script3.js'),
-                    transform: function(content, path) {
-                        return UglifyJS.minify(content.toString()).code;
-                    }
-                },
-                {
-                    from: 'build/js/vue/**/*.vue',
-                    // to: 'js/vue/',
-                    to({ context, absoluteFilename }) {
-                      return "js/vue/[name][ext]";
-                    },
-
-                    // flatten: false,
-                    // transform(content, absoluteFrom) {
-                    //     console.log(content)
-                    // }
-                    // transformPath(targetPath, absolutePath) {
-                    //     return targetPath.replace(/build\/js\/vue/, '');
-                    // },
-                }
-            ]
         }),
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
